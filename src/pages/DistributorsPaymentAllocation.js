@@ -1,32 +1,46 @@
+import React from 'react'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper'
+import things from "../database/database.json"
 
-import things from "../database/database.json";
 
-const Dpa = () => {
-  // const { details, setDetails } = useState(things.customers);
-
+const DistributorsPaymentAllocation = () => {
   return (
-    <div className="App">
-      <h3>DISTRIBUTOR PAYMENT ALLOCATION</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Payment ID</th>
-            <th>Invoice Sub Number</th>
-            <th>Amount Allocated</th>
-          </tr>
-        </thead>
-        <tbody>
+    <>
+    <TableContainer component={Paper}>
+      <Table sx={{ maxWidth: 750 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Payment ID</TableCell>
+            <TableCell align="right">Invoice Sub-Number</TableCell>
+            <TableCell align="right">Amount Allocated</TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {things.distributor_payment_allocation.map((distributor) => (
-            <tr>
-              <td>{distributor.payment_id}</td>
-              <td>{distributor.invoice_subnumber}</td>
-              <td>{distributor.amount_allocated}</td>
-            </tr>
+            <TableRow
+              key={distributor.payment_id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {distributor.payment_id}
+              </TableCell>
+              <TableCell align="right">{distributor.invoice_subnumber}</TableCell>
+              <TableCell align="right">{distributor.amount_allocated}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+        </TableBody>
+      </Table>
+    </TableContainer>
+  {/* <Form /> */}
+  </>
+  )
+}
 
-export default Dpa;
+export default DistributorsPaymentAllocation

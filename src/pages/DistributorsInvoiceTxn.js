@@ -1,44 +1,56 @@
+import React from 'react'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper'
+import things from "../database/database.json"
 
-import things from "../database/database.json";
-
-const Distinvtxn = () => {
-  // const { details, setDetails } = useState(things.customers);
-
+const DistributorsInvoiceTxn = () => {
   return (
-    <div className="App">
-      <h3>Distributor Invoice Txn</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Invoice Number</th>
-            <th>Invoice Sub Number</th>
-            <th>Customer ID</th>
-            <th>Product Code</th>
-            <th>Rate</th>
-            <th>Amount</th>
-            <th>Vat</th>
-            <th>Total</th>
-            <th>Product Serial</th>
-          </tr>
-        </thead>
-        <tbody>
+    <>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Invoice Number</TableCell>
+            <TableCell align="right">Invoice Sub-Number</TableCell>
+            <TableCell align="right">Customer ID</TableCell>
+            <TableCell align="right">Product Code</TableCell>
+            <TableCell align="right">Rate</TableCell>
+            <TableCell align="right">Amount</TableCell>
+            <TableCell align="right">VAT</TableCell>
+            <TableCell align="right">Total</TableCell>
+            <TableCell align="right">Product Serial</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {things.distributor_invoice_txn.map((distributor) => (
-            <tr>
-              <td>{distributor.invoice_number}</td>
-              <td>{distributor.invoice_subnumber}</td>
-              <td>{distributor.customer_id}</td>
-              <td>{distributor.product_code}</td>
-              <td>{distributor.rate}</td>
-              <td>{distributor.amount}</td>
-              <td>{distributor.vat}</td>
-              <td>{distributor.total}</td>
-              <td>{distributor.product_serial}</td>
-            </tr>
+            <TableRow
+              key={distributor.invoice_number}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {distributor.invoice_number}
+              </TableCell>
+              <TableCell align="right">{distributor.invoice_subnumber}</TableCell>
+              <TableCell align="right">{distributor.customer_id}</TableCell>
+              <TableCell align="right">{distributor.product_code}</TableCell>
+              <TableCell align="right">{distributor.rate}</TableCell>
+              <TableCell align="right">{distributor.amount}</TableCell>
+              <TableCell align="right">{distributor.vat}</TableCell>
+              <TableCell align="right">{distributor.total}</TableCell>
+              <TableCell align="right">{distributor.product_serial}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+        </TableBody>
+      </Table>
+    </TableContainer>
+  {/* <Form /> */}
+  </>
+  )
+}
 
-export default Distinvtxn;
+export default DistributorsInvoiceTxn

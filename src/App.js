@@ -12,6 +12,7 @@ import VatMaster from './pages/VatMaster'
 import DistributorsPaymentMaster from './pages/DistributorsPaymentMaster'
 import DistributorsPaymentAllocation from './pages/DistributorsPaymentAllocation'
 import DistributorsInvoiceTxn from './pages/DistributorsInvoiceTxn'
+// import Customersnew from './pages/Customers/Customersnew'
 
 function App() {
   return (

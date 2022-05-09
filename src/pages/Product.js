@@ -1,58 +1,55 @@
-// import { Typography } from '@material-ui/core'
-// import React from 'react'
-
-// function Product() {
-//   return (
-//     <>
-//       <div>
-//         <Typography>My product</Typography>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default Product
-
-import things from "../database/database.json";
+import React from 'react'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper'
+// import Form from '../components/Form';
+import things from "../database/database.json"
 
 const Product = () => {
-  // const { details, setDetails } = useState(things.customers);
-  console.log(things.product_master);
-
   return (
-    <div className="App">
-      <h3>PRODUCT MASTER</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Product Code</th>
-            <th>Product Name</th>
-            <th>Product Cost Price</th>
-            <th>Product Sell Price</th>
-            <th>Product Vat</th>
-            <th>Product Deposit</th>
-            <th>Product Installment Amount</th>
-            <th>Product Installment Count</th>
-          </tr>
-        </thead>
-        <tbody>
+    <>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Product Code</TableCell>
+            <TableCell align="right">Product Name</TableCell>
+            <TableCell align="right">Product Cost Price</TableCell>
+            <TableCell align="right">Product Sell Price</TableCell>
+            <TableCell align="right">Product VAT</TableCell>
+            <TableCell align="right">Product Deposit</TableCell>
+            <TableCell align="right">Product Installment Amount</TableCell>
+            <TableCell align="right">Product Installment Count</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {things.product_master.map((product) => (
-            <tr>
-              <td>{product.product_code}</td>
-              <td>{product.product_name}</td>
-              <td>{product.product_costprice}</td>
-              <td>{product.product_sellprice}</td>
-              <td>{product.product_vat}</td>
-              <td>{product.product_deposit}</td>
-              <td>{product.product_installment_amount}</td>
-              <td>{product.product_installment_count}</td>
-            </tr>
+            <TableRow
+              key={product.product_code}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {product.product_code}
+              </TableCell>
+              <TableCell align="right">{product.product_name}</TableCell>
+              <TableCell align="right">{product.product_costprice}</TableCell>
+              <TableCell align="right">{product.product_sellprice}</TableCell>
+              <TableCell align="right">{product.product_vat}</TableCell>
+              <TableCell align="right">{product.product_deposit}</TableCell>
+              <TableCell align="right">{product.product_installment_amount}</TableCell>
+              <TableCell align="right">{product.product_installment_count}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+        </TableBody>
+      </Table>
+    </TableContainer>
+  {/* <Form /> */}
+  </>
+  )
+}
 
-export default Product;
-
+export default Product

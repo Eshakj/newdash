@@ -1,42 +1,55 @@
+import React from 'react'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper'
+import things from "../database/database.json"
 
-import things from "../database/database.json";
-
-const Distinv = () => {
-  // const { details, setDetails } = useState(things.customers);
-
+const DistributorInvoiceMaster = () => {
   return (
-    <div className="App">
-      <h3>Distributor Invoice Master</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Distributor Code</th>
-            <th>Diocese Code</th>
-            <th>Invoice Number</th>
-            <th>Date</th>
-            <th>Ship To</th>
-            <th>Terms</th>
-            <th>Ship Date</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
+    <>
+   
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Distributor Code</TableCell>
+            <TableCell align="right">Diocese Code</TableCell>
+            <TableCell align="right">Invoice Number</TableCell>
+            <TableCell align="right">Date</TableCell>
+            <TableCell align="right">Ship To</TableCell>
+            <TableCell align="right">Terms</TableCell>
+            <TableCell align="right">Ship Date</TableCell>
+            <TableCell align="right">Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {things.distributor_invoice_master.map((distributor) => (
-            <tr>
-              <td>{distributor.distributor_code}</td>
-              <td>{distributor.diocese_code}</td>
-              <td>{distributor.invoice_number}</td>
-              <td>{distributor.date}</td>
-              <td>{distributor.ship_to}</td>
-              <td>{distributor.terms}</td>
-              <td>{distributor.ship_date}</td>
-              <td>{distributor.total}</td>
-            </tr>
+            <TableRow
+              key={distributor.distributor_code}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {distributor.distributor_code}
+              </TableCell>
+              <TableCell align="right">{distributor.diocese_code}</TableCell>
+              <TableCell align="right">{distributor.invoice_number}</TableCell>
+              <TableCell align="right">{distributor.date}</TableCell>
+              <TableCell align="right">{distributor.ship_to}</TableCell>
+              <TableCell align="right">{distributor.terms}</TableCell>
+              <TableCell align="right">{distributor.ship_date}</TableCell>
+              <TableCell align="right">{distributor.total}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+        </TableBody>
+      </Table>
+    </TableContainer>
+  {/* <Form /> */}
+  </>
+  )
+}
 
-export default Distinv;
+export default DistributorInvoiceMaster
