@@ -7,26 +7,57 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import "../Forms/Forms.css"
+import things from "../../database/database.json"
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
-  const [CustName, setCustName] = React.useState("")
+  const [contacts, setContacts] = React.useState(things);
+  const [addFromData, setAddFormData] =React.useState({
+     customerID: "",
+    name: "",
+    church: "",
+    diocese: "",
+    phoneNumber: ""
+
+
+
+  })
+  const handleAddFormChange =(event) =>{
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name")
+    const fieldValue  = event.target.value
+    const newFormData = {...addFromData}
+    newFormData[fieldName] = fieldValue
+
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.preventDefault()
     setOpen(false);
   };
 
- 
+ const handleAddFormSubmit = (event)=>{
+   event.preventDefault();
+   const newContact = {
+     customerID: addFromData.customerID,
+     name: addFromData.name,
+     church: addFromData.church,
+     diocese: addFromData.diocese,
+     phoneNumber: addFromData.phoneNumber
+   }
+   const newContacts = [...contacts, newContact]
+   setContacts(newContacts)
+ }
   return (
     <div>
       <Button variant="outlined" typography="h5" onClick={handleClickOpen}>
         Edit Table Data
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} onSubmit={handleAddFormSubmit}>
         <DialogTitle variant="h4">Edit Table Data</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -39,11 +70,12 @@ export default function FormDialog() {
           <TextField
             autoFocus
             margin="light"
-            id="name"
+            name="customerID"
             label=""
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleAddFormChange}
           /></div>
            <div className="no_space">
           <h4>Customer Name</h4>
@@ -51,11 +83,12 @@ export default function FormDialog() {
           <TextField
             autoFocus
             margin="light"
-            id="name"
+            name="name"
             label=""
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleAddFormChange}
           /></div>
            <div className="no_space">
           <h4>Church</h4>
@@ -63,11 +96,12 @@ export default function FormDialog() {
           <TextField
             autoFocus
             margin="light"
-            id="name"
+            name="church"
             label=""
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleAddFormChange}
           /></div>
            <div className="no_space">
           <h4>Diocese</h4>
@@ -75,11 +109,12 @@ export default function FormDialog() {
           <TextField
             autoFocus
             margin="light"
-            id="name"
+            name="diocese"
             label=""
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleAddFormChange}
           /></div>
            <div className="no_space">
           <h4>Phone Number</h4>
@@ -87,11 +122,12 @@ export default function FormDialog() {
           <TextField
             autoFocus
             margin="light"
-            id="name"
+            name="phoneNumber"
             label=""
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleAddFormChange}
           /></div>
           
         </DialogContent>
