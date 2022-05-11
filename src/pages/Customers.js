@@ -7,7 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@material-ui/core/Paper'
 import things from "../database/database.json"
-import CustForm from "./Forms/CustForm"
+// import Test from "./Forms/Test"
+// import CustForm from "./Forms/CustForm"
+import CustForm2 from './Forms/CustForm2';
 
 
 const Customers = () =>{
@@ -44,7 +46,9 @@ const Customers = () =>{
       </Table>
     </TableContainer>
     <br></br>
-    <CustForm />
+    
+    {/* <Test /> */}
+    <CustForm2 />
   </>
   );
 }

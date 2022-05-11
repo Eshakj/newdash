@@ -1,18 +1,18 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
 import "../Forms/Forms.css"
 import things from "../../database/database.json"
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [contacts, setContacts] = React.useState(things);
-  const [addFromData, setAddFormData] =React.useState({
+  const [addFormData, setAddFormData] =React.useState({
      customerID: "",
     name: "",
     church: "",
@@ -26,9 +26,9 @@ export default function FormDialog() {
     event.preventDefault();
     const fieldName = event.target.getAttribute("name")
     const fieldValue  = event.target.value
-    const newFormData = {...addFromData}
+    const newFormData = {...addFormData}
     newFormData[fieldName] = fieldValue
-
+  setAddFormData(newFormData)
   }
 
   const handleClickOpen = () => {
@@ -43,14 +43,14 @@ export default function FormDialog() {
  const handleAddFormSubmit = (event)=>{
    event.preventDefault();
    const newContact = {
-     customerID: addFromData.customerID,
-     name: addFromData.name,
-     church: addFromData.church,
-     diocese: addFromData.diocese,
-     phoneNumber: addFromData.phoneNumber
+     customerID: addFormData.customerID,
+     name: addFormData.name,
+     church: addFormData.church,
+     diocese: addFormData.diocese,
+     phoneNumber: addFormData.phoneNumber
    }
-   const newContacts = [...contacts, newContact]
    setContacts(newContacts)
+   const newContacts = [...contacts, newContact]
  }
   return (
     <div>
@@ -58,83 +58,64 @@ export default function FormDialog() {
         Edit Table Data
       </Button>
       <Dialog open={open} onClose={handleClose} onSubmit={handleAddFormSubmit}>
-        <DialogTitle variant="h4">Edit Table Data</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Click add to edit table data.
-          </DialogContentText>
+       
           <h3>Add A New Customer</h3>
-      <div className="no_space">
-          <h4>Customer ID</h4>
-         
-          <TextField
-            autoFocus
-            margin="light"
-            name="customerID"
-            label=""
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleAddFormChange}
-          /></div>
-           <div className="no_space">
-          <h4>Customer Name</h4>
-         
-          <TextField
-            autoFocus
-            margin="light"
-            name="name"
-            label=""
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleAddFormChange}
-          /></div>
-           <div className="no_space">
-          <h4>Church</h4>
-         
-          <TextField
-            autoFocus
-            margin="light"
-            name="church"
-            label=""
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleAddFormChange}
-          /></div>
-           <div className="no_space">
-          <h4>Diocese</h4>
-         
-          <TextField
-            autoFocus
-            margin="light"
-            name="diocese"
-            label=""
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleAddFormChange}
-          /></div>
-           <div className="no_space">
-          <h4>Phone Number</h4>
-         
-          <TextField
-            autoFocus
-            margin="light"
-            name="phoneNumber"
-            label=""
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleAddFormChange}
-          /></div>
-          
-        </DialogContent>
-        <DialogActions>
+          <form onSubmit={handleAddFormSubmit}> 
+          <div className='space'>
+            <div className='in_space'>
+          <label>Customer ID</label><br></br>
+          <input
+       type="text"
+       name="customerID"
+       required="required"
+       placeholder='Enter Customer ID'
+       onChange={handleAddFormChange}
+       /> <br></br></div>
+       <div className='in_space'>
+       <label>Customer Name</label><br></br>
+       <input
+       type="text"
+       name="name"
+       required="required"
+       placeholder='Enter Customer Name'
+       onChange={handleAddFormChange}
+       /><br></br></div>
+       <div className='in_space'>
+       <label>Church</label><br></br>
+       <input
+       type="text"
+       name="church"
+       required="required"
+       placeholder='Enter Church'
+       onChange={handleAddFormChange}
+       /><br></br></div>
+       <div className='in_space'>
+       <label>Diocese</label><br></br>
+       <input
+       type="text"
+       name="diocese"
+       required="required"
+       placeholder='Enter Diocese'
+       onChange={handleAddFormChange}
+       /><br></br>
+       </div>
+       <div className='in_space'>
+       <label>Phone Number</label><br></br>
+       <input
+       type="text"
+       name="phoneNumber"
+       required="required"
+       placeholder='Enter Phone Number'
+       onChange={handleAddFormChange}
+       />
+       </div>
+     </div>
+      
+          </form>
+        
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
-        </DialogActions>
+          <Button type="submit" onClick={handleClickOpen}>Add</Button>
+      
       </Dialog>
     </div>
   );

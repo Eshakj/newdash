@@ -6,7 +6,8 @@ import Diocese from './pages/Diocese'
 import { Routes, Route } from 'react-router-dom'
 import LayoutNav from './components/LayoutNav'
 import Product from './pages/Product'
-import Customers from './pages/Customers'
+// import Customers2 from './pages/Customers2'
+import Customer3 from './pages/Customer3'
 import DistributorInvoiceMaster from './pages/DistributorInvoiceMaster'
 import VatMaster from './pages/VatMaster'
 import DistributorsPaymentMaster from './pages/DistributorsPaymentMaster'
@@ -21,7 +22,7 @@ function App() {
         <Route path='/' element={<LayoutNav />}>
           <Route index element={<Dashboard />} />
           <Route path='/distributors' element={<Distributors />} />
-          <Route path='/customers' element={<Customers />} />
+          <Route path='/customers' element={<Customer3 />} />
           <Route path='/diocese' element={<Diocese />} />
           <Route path='/suppliers' element={<Supplier />} />
           <Route path='/products' element={<Product />} />
