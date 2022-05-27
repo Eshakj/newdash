@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
-import { nanoid } from "nanoid";
-import "./Test.css";
+// import { nanoid } from "nanoid";
+// import "./Test.css";
 import things from "../../database/database.json"
 // import data from "../../database/mock.json";
 // import ReadOnlyRow from "./components/ReadOnlyRow";

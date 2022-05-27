@@ -3,12 +3,11 @@ import Button from '@mui/material/Button';
 
 import Dialog from '@mui/material/Dialog';
 
-import "../Forms/Forms.css"
-// import things from "../../database/database.json"
-import { useState } from 'react';
+import "../pages/Forms/Forms.css"
+import { useState , useEffect} from 'react';
 import axios from "axios"
 
-export default function FormDialog() {
+const Update = () => {
   const [open, setOpen] = React.useState(false);
   // const [contacts, setContacts] = React.useState(things);
   const [custID, setCustID] = useState("")
@@ -16,13 +15,15 @@ export default function FormDialog() {
   const [church, setChurch] = useState("")
   const [diocese, setDiocese] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
+  const [ID, setID] = useState(null)
 
- console.log(custID)
- console.log(custName)
- console.log(church)
+//  console.log(custID)
+//  console.log(custName)
+//  console.log(church)
+
 
  const sendDataToApi = ()=>{
-axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
+axios.put(`https://628b7c86667aea3a3e304426.mockapi.io/Test/${custID}`,{
   custID,
   custName,
   church,
@@ -30,7 +31,14 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
   phoneNumber
 })
  }
-
+useEffect(()=>{
+  setCustID(localStorage.getItem("custID"))
+  setName(localStorage.getItem("custName"))
+  setChurch(localStorage.getItem("church"))
+  setDiocese(localStorage.getItem("diocese"))
+  setPhoneNumber(localStorage.getItem("phoneNumber"))
+  setID(localStorage.getItem("ID"))
+}, [])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -41,10 +49,10 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
   };
   return (
     <div>
-      <Button variant="outlined" typography="h5" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" typography="h5" onClick={handleClickOpen}>
         Edit Table Data
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}> */}
        
           <h3>Add A New Customer</h3>
           <form > 
@@ -52,6 +60,7 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
             <div className='in_space'>
           <label>Customer ID</label><br></br>
           <input
+          value={custID}
        type="text"
        name="customerID"
        required="required"
@@ -61,6 +70,7 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
        <div className='in_space'>
        <label>Customer Name</label><br></br>
        <input
+       value={custName}
        type="text"
        name="name"
        required="required"
@@ -71,6 +81,7 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
        <div className='in_space'>
        <label>Church</label><br></br>
        <input
+       value={church}
        type="text"
        name="church"
        required="required"
@@ -81,6 +92,7 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
        <div className='in_space'>
        <label>Diocese</label><br></br>
        <input
+       value={diocese}
        type="text"
        name="diocese"
        required="required"
@@ -92,6 +104,7 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
        <div className='in_space'>
        <label>Phone Number</label><br></br>
        <input
+       value={phoneNumber}
        type="text"
        name="phoneNumber"
        required="required"
@@ -105,9 +118,12 @@ axios.post("https://628b7c86667aea3a3e304426.mockapi.io/Test",{
           </form>
         
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={sendDataToApi}>Add</Button>
+          <Button type="submit" onClick={sendDataToApi}>Update</Button>
       
-      </Dialog>
+      {/* </Dialog> */}
     </div>
   );
 }
+
+
+export default Update

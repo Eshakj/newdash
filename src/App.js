@@ -6,14 +6,16 @@ import Diocese from './pages/Diocese'
 import { Routes, Route } from 'react-router-dom'
 import LayoutNav from './components/LayoutNav'
 import Product from './pages/Product'
-// import Customers2 from './pages/Customers2'
-import Customer3 from './pages/Customer3'
+import Customers from './pages/Customers'
+// import Customer4 from './pages/Customer4'
+// import Customers from './pages/Customers'
 import DistributorInvoiceMaster from './pages/DistributorInvoiceMaster'
 import VatMaster from './pages/VatMaster'
 import DistributorsPaymentMaster from './pages/DistributorsPaymentMaster'
 import DistributorsPaymentAllocation from './pages/DistributorsPaymentAllocation'
 import DistributorsInvoiceTxn from './pages/DistributorsInvoiceTxn'
-// import Customersnew from './pages/Customers/Customersnew'
+import Update from "../src/pages/Update"
+import Delete from "../src/pages/Delete"
 
 function App() {
   return (
@@ -21,16 +23,18 @@ function App() {
       <Routes>
         <Route path='/' element={<LayoutNav />}>
           <Route index element={<Dashboard />} />
-          <Route path='/distributors' element={<Distributors />} />
-          <Route path='/customers' element={<Customer3 />} />
-          <Route path='/diocese' element={<Diocese />} />
-          <Route path='/suppliers' element={<Supplier />} />
-          <Route path='/products' element={<Product />} />
-          <Route path='/distributorsinvoicemaster' element={<DistributorInvoiceMaster />} />
-          <Route path='/distributorsinvoicetxn' element={<DistributorsInvoiceTxn />} />
-          <Route path='/distributorspaymentallocation' element={<DistributorsPaymentAllocation />} />
-          <Route path='/distributorspaymentmaster' element={<DistributorsPaymentMaster />} />
-          <Route path='/vatmaster' element={<VatMaster />} />
+          <Route exact path='/distributors' element={<Distributors />} />
+          <Route exact path='/customers' element={<Customers />} />
+          <Route exact path='/diocese' element={<Diocese />} />
+          <Route exact path='/suppliers' element={<Supplier />} />
+          <Route exact path='/products' element={<Product />} />
+          <Route exact path='/distributorsinvoicemaster' element={<DistributorInvoiceMaster />} />
+          <Route exact path='/distributorsinvoicetxn' element={<DistributorsInvoiceTxn />} />
+          <Route exact path='/distributorspaymentallocation' element={<DistributorsPaymentAllocation />} />
+          <Route exact path='/distributorspaymentmaster' element={<DistributorsPaymentMaster />} />
+          <Route exact path='/vatmaster' element={<VatMaster />} />
+          <Route exact path="/update/:id" element={<Update />}/>
+          <Route exact path="/delete" element={<Delete />}/>
         </Route>
       </Routes>
     </>
